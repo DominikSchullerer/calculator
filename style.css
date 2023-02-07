@@ -1,0 +1,39 @@
+* {
+    box-sizing: border-box;
+}
+
+#calculator {
+    display: flex;
+    flex-direction: column;
+    border-style: solid;
+    max-width: fit-content;
+    padding: 1em;
+
+    background-color:darkslateblue;
+
+    font-size:xx-large;
+}
+
+#display {
+    display: flex;
+    width: 240px;
+    height: 60px;
+    border-style: solid;
+    background-color: lightgray;
+
+    align-items: center;
+    justify-content: end;
+}
+
+.button {
+    font-size: xx-large;
+    width: 60px;
+}
+
+#\= {
+    width: 120px
+}
+
+.row {
+    display: flex;
+}
