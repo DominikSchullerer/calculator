@@ -1,3 +1,15 @@
+const display = document.querySelector('#display')
+const numberBtns = document.querySelectorAll('.numberBtn')
+const decimalBtn = document.querySelector('#decimalBtn')
+
+console.log(decimalBtn)
+
+let displayContentLeading = '0';
+let displayContentTrailing = '';
+let displayContentNumber = 0;
+
+
+
 function add(num1, num2) {
     return num1 + num2
 }
@@ -39,3 +51,27 @@ function operate(num1, num2, operator) {
 
     return result;
 }
+
+function updateDisplay(number) {
+    display.textContent = displayContentNumber
+}
+
+
+numberBtns.forEach(numberBtn => {
+    numberBtn.addEventListener('click', () => {
+        if(displayContentTrailing === '') {
+            displayContentLeading = displayContentLeading + numberBtn.textContent
+        } else {
+            displayContentTrailing = displayContentTrailing + numberBtn.textContent
+        }
+
+        displayContentNumber = Number(displayContentLeading + displayContentTrailing)
+        updateDisplay(displayContentNumber)
+    })
+})
+
+decimalBtn.addEventListener('click', () => {
+    if(displayContentTrailing === '') {
+        displayContentTrailing = '.'
+    }
+})
