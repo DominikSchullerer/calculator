@@ -4,12 +4,13 @@ const decimalBtn = document.querySelector('#decimalBtn')
 const operationBtns = document.querySelectorAll('.operationBtn')
 const equalsBtn = document.querySelector('#equalsBtn')
 const clearBtn = document.querySelector('#c')
+const clearAllBtn = document.querySelector('#ac')
 
 let displayContentLeading = '0';
 let displayContentTrailing = '';
 let displayContentNumber = 0;
 let storedNumber = null;
-let storedOperator;
+let storedOperator = null;
 
 
 function add(num1, num2) {
@@ -120,5 +121,14 @@ clearBtn.addEventListener('click', () => {
     displayContentLeading = '0'
     displayContentTrailing = ''
     displayContentNumber = 0
+    updateDisplay(displayContentNumber)
+})
+
+clearAllBtn.addEventListener('click', () => {
+    displayContentLeading = '0';
+    displayContentTrailing = '';
+    displayContentNumber = 0;
+    storedNumber = null;
+    storedOperator = null;
     updateDisplay(displayContentNumber)
 })
