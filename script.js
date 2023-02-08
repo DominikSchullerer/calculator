@@ -3,6 +3,7 @@ const numberBtns = document.querySelectorAll('.numberBtn')
 const decimalBtn = document.querySelector('#decimalBtn')
 const operationBtns = document.querySelectorAll('.operationBtn')
 const equalsBtn = document.querySelector('#equalsBtn')
+const clearBtn = document.querySelector('#c')
 
 let displayContentLeading = '0';
 let displayContentTrailing = '';
@@ -113,4 +114,11 @@ equalsBtn.addEventListener('click', () => {
         displayContentTrailing = ''
         storedOperator = null;
     }
+})
+
+clearBtn.addEventListener('click', () => {
+    displayContentLeading = '0'
+    displayContentTrailing = ''
+    displayContentNumber = 0
+    updateDisplay(displayContentNumber)
 })
