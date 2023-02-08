@@ -1,13 +1,14 @@
 const display = document.querySelector('#display')
 const numberBtns = document.querySelectorAll('.numberBtn')
 const decimalBtn = document.querySelector('#decimalBtn')
-
-console.log(decimalBtn)
+const operationBtns = document.querySelectorAll('.operationBtn')
+const equalsBtn = document.querySelector('#equalsBtn')
 
 let displayContentLeading = '0';
 let displayContentTrailing = '';
 let displayContentNumber = 0;
-
+let storedNumber = null;
+let storedOperator;
 
 
 function add(num1, num2) {
@@ -37,7 +38,7 @@ function operate(num1, num2, operator) {
             result = subtract(num1, num2);
             break;
 
-        case '*':
+        case 'x':
             result = multiyply(num1, num2);
             break;
             
@@ -53,7 +54,7 @@ function operate(num1, num2, operator) {
 }
 
 function updateDisplay(number) {
-    display.textContent = displayContentNumber
+    display.textContent = number
 }
 
 
@@ -73,5 +74,43 @@ numberBtns.forEach(numberBtn => {
 decimalBtn.addEventListener('click', () => {
     if(displayContentTrailing === '') {
         displayContentTrailing = '.'
+    }
+})
+
+operationBtns.forEach(operationBtn => {
+    operationBtn.addEventListener('click', () => {
+        if(storedNumber == null) {
+            storedOperator = operationBtn.textContent;
+            storedNumber = displayContentNumber;
+            displayContentNumber = 0;
+            displayContentLeading = '0'
+            displayContentTrailing = ''
+            updateDisplay(displayContentNumber);
+        } else {
+            if(storedOperator != null) {
+                result = operate(storedNumber, displayContentNumber, storedOperator);
+                updateDisplay(result);
+                storedNumber = result;
+                displayContentNumber = 0
+                displayContentLeading = '0'
+                displayContentTrailing = ''
+            }
+            storedOperator = operationBtn.textContent;
+        }
+
+
+        
+    })
+})
+
+equalsBtn.addEventListener('click', () => {
+    if(storedOperator) {
+        result = operate(storedNumber, displayContentNumber, storedOperator);
+        updateDisplay(result);
+        storedNumber = result;
+        displayContentNumber = 0
+        displayContentLeading = '0'
+        displayContentTrailing = ''
+        storedOperator = null;
     }
 })
