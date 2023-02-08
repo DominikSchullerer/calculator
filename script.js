@@ -5,6 +5,7 @@ const operationBtns = document.querySelectorAll('.operationBtn')
 const equalsBtn = document.querySelector('#equalsBtn')
 const clearBtn = document.querySelector('#c')
 const clearAllBtn = document.querySelector('#ac')
+const changeSignBtn = document.querySelector('#changeSign')
 
 let displayContentLeading = '0';
 let displayContentTrailing = '';
@@ -130,5 +131,11 @@ clearAllBtn.addEventListener('click', () => {
     displayContentNumber = 0;
     storedNumber = null;
     storedOperator = null;
+    updateDisplay(displayContentNumber)
+})
+
+changeSignBtn.addEventListener('click', () => {
+    displayContentLeading = '-' + displayContentLeading
+    displayContentNumber = Number(displayContentLeading + displayContentTrailing)
     updateDisplay(displayContentNumber)
 })
